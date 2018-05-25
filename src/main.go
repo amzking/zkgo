@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-
+	"zkgo/src/search"
 )
 
 func init() {
@@ -15,5 +15,5 @@ func init() {
 
 func main()  {
 	fmt.Println("hello world")
-	//search.Run("president");
+	search.Run("president");
 }
