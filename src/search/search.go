@@ -7,7 +7,7 @@ import (
 
 var matchers = make(map[string]Matcher)
 
-func Run(seachTerm string) {
+func Run(searchTerm string) {
 
 	feeds, err := RetrieveFeeds()
 
@@ -28,7 +28,8 @@ func Run(seachTerm string) {
 			matcher = matchers["default"]
 		}
 
-		// go程序终止时会关闭所有之前启动且还在运行的goroutine
+		// go启动了一个匿名函数
+		// 指针变量可以方便的在函数之间共享数据
 		go func(matcher Matcher, feed *Feed) {
 			Match(matcher, feed, searchTerm, results)
 			waitGroup.Done()
@@ -45,7 +46,7 @@ func Run(seachTerm string) {
 
 }
 
-
+// 在函数传值，所有的变量都是值传递，指针为内存地址，传递内存地址，指向同一份数据
 func Register(feedType string, matcher Matcher) {
 
 }
