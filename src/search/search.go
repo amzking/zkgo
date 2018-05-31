@@ -19,6 +19,7 @@ func Run(searchTerm string) {
 
 	var waitGroup sync.WaitGroup
 
+	// WaitGroup 跟踪goroutine的工作是否完成，是一个信号计数量
 	waitGroup.Add(len(feeds))
 
 	// _为占位符，索引值，当我们所调用的函数返回多个值时，不需要其中某个值，可用下划线将其忽略
@@ -30,14 +31,16 @@ func Run(searchTerm string) {
 
 		// go启动了一个匿名函数
 		// 指针变量可以方便的在函数之间共享数据
+		// searchTerm results 闭包方式访问
 		go func(matcher Matcher, feed *Feed) {
 			Match(matcher, feed, searchTerm, results)
+			// 计数递减
 			waitGroup.Done()
 		}(matcher, feed)
 	}
 
 	go func() {
-		// WaitGroup 跟踪goroutine的工作是否完成，是一个信号计数量
+		// 阻塞直到计数为0
 		waitGroup.Wait()
 		close(results);
 	}();
