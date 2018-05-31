@@ -27,6 +27,7 @@ func Run(seachTerm string) {
 			matcher = matchers["default"]
 		}
 
+		// go程序终止时会关闭所有之前启动且还在运行的goroutine
 		go func(matcher Matcher, feed *Feed) {
 			Match(matcher, feed, searchTerm, results)
 			waitGroup.Done()

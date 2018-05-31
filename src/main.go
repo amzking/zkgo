@@ -13,6 +13,9 @@ func init() {
 	log.SetOutput(os.Stdout)
 }
 
+/**
+ * 在main 函数返回之前清理并终止之前启动的goroutine
+ */
 func main()  {
 	fmt.Println("hello world")
 	search.Run("president");
