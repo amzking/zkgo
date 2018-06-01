@@ -22,6 +22,7 @@ func RetrieveFeeds() ([]*Feed, error) {
 		return nil, err
 	}
 
+	// 当之前os.Open函数报错当时候，defer 保证 file.Close()
 	defer file.Close()
 
 	var feeds []*Feed
