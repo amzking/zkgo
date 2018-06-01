@@ -5,6 +5,9 @@ import (
 	"encoding/json"
 )
 
+/**
+ * 声明常量时，不需要指定类型
+ */
 const dataFile = "data/data.json"
 
 type Feed struct {
