@@ -51,5 +51,10 @@ func Run(searchTerm string) {
 
 // 在函数传值，所有的变量都是值传递，指针为内存地址，传递内存地址，指向同一份数据
 func Register(feedType string, matcher Matcher) {
+	if _, exists := matchers[feedType]; exists {
+		log.Fatalln(feedType, "Matcher already regiestered")
+	}
 
+	log.Println("Register", feedType, "matcher")
+	matchers[feedType] = matcher
 }
