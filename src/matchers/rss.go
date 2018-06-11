@@ -61,6 +61,11 @@ func init() {
 	search.Register("rss", matcher)
 }
 
+func init() {
+	fmt.Println("joie")
+}
+
+
 func (m rssMatcher) retrieve(feed *search.Feed) (*rssDocument, error) {
 	if feed.URI == "" {
 		return nil, errors.New("No rss feed URI provided")
